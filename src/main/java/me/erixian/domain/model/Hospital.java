@@ -7,15 +7,15 @@ import java.util.List;
 @Entity(name= "tb_hospital")
 public class Hospital {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<MedicalShift> medicalShiftList;
 
     public Long getId() {

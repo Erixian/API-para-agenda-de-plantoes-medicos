@@ -1,23 +1,21 @@
-package me.erixian.domain.model;
+package me.erixian.controller.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import me.erixian.domain.model.Doctor;
 
-import java.util.List;
-
-@Entity(name = "tb_doctor")
-public class Doctor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DoctorDto {
     private Long id;
-
-    @Column(unique = true)
     private String crm;
-
     private String name;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private List<MedicalShift> medicalShiftList;
+    public DoctorDto() {
+    }
+
+    public DoctorDto(Doctor model) {
+        this.id = model.getId();
+        this.crm = model.getCrm();
+        this.name = model.getName();
+    }
 
     public Long getId() {
         return id;

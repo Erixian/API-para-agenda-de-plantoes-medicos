@@ -16,10 +16,13 @@ public class MedicalShift {
 
     private LocalDateTime endTime;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "shift_doctor", joinColumns = @JoinColumn(name = "medical_shift_id")
+            ,inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private List<Doctor> doctorList;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
     public Long getId() {
